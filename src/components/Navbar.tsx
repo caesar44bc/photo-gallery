@@ -6,6 +6,10 @@ import { AiOutlineUpload } from "react-icons/ai";
 const Navbar = () => {
   const [user, setUser] = useState(true);
 
+  const handleLogin = () => {
+    setUser(!user);
+  };
+
   return (
     <nav className="flex justify-between items-center font-semibold h-16 mx-4 sm:mx-8 md:mx-16 lg:mx-32 backdrop-blur-lg border-b">
       <button aria-label="Menu" className="w-40 md:w-48">
@@ -32,13 +36,16 @@ const Navbar = () => {
       ) : (
         <>
           <div className="hidden md:flex gap-4 w-40 md:w-48 text-sm md:text-base items-center justify-end">
-            <button>Sign in</button>
+            <button onClick={handleLogin}>Sign in</button>
             <button className="px-4 py-2 bg-gradient-to-t from-gray-800 hover:from-gray-800 to-gray-600 hover:to-gray-500 text-white rounded-full">
               Get started
             </button>
           </div>
           <div className="flex md:hidden gap-4 w-40 md:w-48 text-sm md:text-base items-center justify-end">
-            <button className="px-4 py-2 bg-gradient-to-t from-gray-800 hover:from-gray-800 to-gray-600 hover:to-gray-500 text-white rounded-full">
+            <button
+              onClick={handleLogin}
+              className="px-4 py-2 bg-gradient-to-t from-gray-800 hover:from-gray-800 to-gray-600 hover:to-gray-500 text-white rounded-full"
+            >
               Get started
             </button>
           </div>
