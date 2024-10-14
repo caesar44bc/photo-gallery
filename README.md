@@ -14,7 +14,6 @@ Momento is a Pinterest-inspired photo-sharing app where users can sign up, uploa
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## **Demo**
 
