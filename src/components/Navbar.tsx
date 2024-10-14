@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-bold">
-            YourPlatform
+            Photo Gallery
           </Link>
         </div>
         <div className="hidden md:block">
