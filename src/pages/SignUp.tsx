@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { account, ID } from "../appwrite";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -8,14 +9,15 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleAccountCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      name: name,
-      email: email,
-      password: password,
-    });
-    navigate("/");
+    try {
+      await account.create(ID.unique(), email, password, name);
+      await account.createEmailPasswordSession(email, password);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -30,7 +32,10 @@ const SignUp = () => {
         </p>
       </div>
       <div>
-        <form onSubmit={handleSignIn} className="flex flex-col w-96 gap-2">
+        <form
+          onSubmit={handleAccountCreate}
+          className="flex flex-col w-96 gap-2"
+        >
           <label htmlFor="name" className="font-semibold text-sm">
             Name*
           </label>
