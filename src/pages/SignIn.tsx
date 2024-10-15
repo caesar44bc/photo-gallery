@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { account } from "../appwrite";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -7,13 +8,14 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleAccountSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      email: email,
-      password: password,
-    });
-    navigate("/");
+    try {
+      await account.createEmailPasswordSession(email, password);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -28,7 +30,10 @@ const SignIn = () => {
         </p>
       </div>
       <div>
-        <form onSubmit={handleSignIn} className="flex flex-col w-96 gap-2">
+        <form
+          onSubmit={handleAccountSignIn}
+          className="flex flex-col w-96 gap-2"
+        >
           <label htmlFor="email" className="font-semibold text-sm">
             Email*
           </label>
